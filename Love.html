@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gửi Bé iu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+            overflow: hidden;
+        }
+        h1 {
+            color: #d63384;
+        }
+        .marquee {
+            font-size: 20px;
+            color: #ff1493;
+            white-space: nowrap;
+            overflow: hidden;
+            display: block;
+            width: 100%;
+            position: relative;
+            height: 30px;
+        }
+        .marquee span {
+            display: inline-block;
+            animation: marquee 8s linear infinite;
+        }
+        @keyframes marquee {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        button:hover {
+            background-color: #d63384;
+        }
+        .image-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .image-wrapper {
+            text-align: left;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .loveImage {
+            width: 45%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        .imageCaption {
+            font-size: 18px;
+            color: #d63384;
+            margin-top: 10px;
+            text-align: left;
+            margin-left: 10px;
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 40px;
+            font-weight: bold;
+            animation: floatUp 4s linear infinite;
+            filter: drop-shadow(3px 3px 6px rgba(255, 0, 0, 1));
+        }
+        @keyframes floatUp {
+            from {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+        #passwordContainer {
+            display: none;
+            margin-top: 20px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ff69b4;
+            border-radius: 5px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .shake {
+            animation: shake 0.3s ease-in-out;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+        }
+    </style>
+    <script>
+        function showPasswordInput() {
+            document.getElementById('passwordContainer').style.display = 'block';
+        }
+        function checkPassword() {
+            let passwordInput = document.getElementById('passwordInput');
+            let errorText = document.getElementById('errorText');
+            if (passwordInput.value === "382008") {
+                document.querySelectorAll('.image-wrapper').forEach((wrapper, index) => {
+                    setTimeout(() => {
+                        wrapper.style.opacity = "1";
+                        wrapper.style.transform = "scale(1)";
+                    }, index * 500);
+                });
+                errorText.textContent = "";
+                passwordInput.style.border = "2px solid #ff69b4";
+            } else {
+                errorText.textContent = "Sai mật khẩu rồi nhooo";
+                passwordInput.style.border = "2px solid red";
+                passwordInput.classList.add("shake");
+                setTimeout(() => passwordInput.classList.remove("shake"), 300);
+            }
+        }
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+        setInterval(createHeart, 200);
+    </script>
+</head>
+<body>
+    <h1>Gửi Bé iu của anh❤️</h1>
+    <div class="marquee">
+        <span>Anh yêu em nhiều lắm ó:3 Mãi bên nhau em nhé 💕</span>
+    </div>
+    <p>Đây là món quà nhỏ anh dành tặng cho em.</p>
+    <button onclick="showPasswordInput()">Bấm vào đây nè</button>
+    <div id="passwordContainer">
+        <input type="password" id="passwordInput" placeholder="Nhập mật khẩu...">
+        <button onclick="checkPassword()">OK</button>
+        <p id="errorText" class="error"></p>
+    </div>
+    <div class="image-container">
+        <div class="image-wrapper">
+            <img class="loveImage" src="conmeo.jpg" alt="Con mèo của em nè" />
+            <p class="imageCaption">Con mèo của em nè 💖</p>
+        </div>
+        <div class="image-wrapper">
+            <img class="loveImage" src="beiu.jpg" alt="Bé iu của anh nèe" />
+            <p class="imageCaption">Bé iu của anh nèe 💕</p>
+        </div>
+        <div class="image-wrapper">
+            <img class="loveImage" src="Meo.jpg" alt="Con mèo của em nè" />
+            <p class="imageCaption">Con mèo của em nè ❤️</p>
+        </div>
+    </div>
+</body>
+</html>
